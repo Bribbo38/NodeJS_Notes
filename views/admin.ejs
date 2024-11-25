@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/head', { title: 'Admin: User Management' }) %>
+<body class="bg-base-300 flex flex-col min-h-screen">
+    <%- include('partials/header') %>
+
+    <main class="flex-grow p-6">
+        <div class="container mx-auto">
+            <h1 class="text-3xl font-bold text-primary mb-6">User Management</h1>
+
+            <!-- Pulsante per creare un nuovo utente -->
+            <div class="flex justify-end mb-4">
+                <label for="create-user-modal" class="btn btn-primary"><i class="ri-add-circle-line"></i> Create New User</label>
+            </div>
+
+            <!-- Tabella utenti -->
+            <div class="overflow-x-auto">
+                <table class="table w-full">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Surname</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th class="text-center">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% users.forEach(user => { %>
+                        <tr>
+                            <td><%= user.name %></td>
+                            <td><%= user.surname %></td>
+                            <td><%= user.email %></td>
+                            <td><%= user.role %></td>
+                            <td class="text-center">
+                                <label for="edit-user-modal" class="btn btn-sm btn-success"
+                                    onclick="setEditModal('<%= user._id %>', '<%= user.name %>', '<%= user.surname %>', '<%= user.email %>', '<%= user.role %>')">
+                                    Edit
+                                </label>
+                                <form action="/admin/delete/<%= user._id %>" method="POST" class="inline-block">
+                                    <button type="submit" class="btn btn-sm btn-error" onclick="return confirm('Are you sure?');">Delete</button>
+                                </form>
+                                <form action="/admin/reset-password/<%= user._id %>" method="POST" class="inline-block">
+                                    <button type="submit" class="btn btn-sm btn-warning" onclick="return confirm('Are you sure you want to reset the password for this user?');">Reset Password</button>
+                                </form>
+                            </td>
+                        </tr>
+                        <% }); %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal: Create User -->
+    <input type="checkbox" id="create-user-modal" class="modal-toggle" />
+    <div class="modal">
+        <div class="modal-box">
+            <h3 class="font-bold text-lg">Create New User</h3>
+            <form action="/admin/create" method="POST">
+                <div class="form-control mb-4">
+                    <label class="label"><span class="label-text">Name</span></label>
+                    <input type="text" name="name" class="input input-bordered w-full" required />
+                </div>
+                <div class="form-control mb-4">
+                    <label class="label"><span class="label-text">Surname</span></label>
+                    <input type="text" name="surname" class="input input-bordered w-full" required />
+                </div>
+                <div class="form-control mb-4">
+                    <label class="label"><span class="label-text">Email</span></label>
+                    <input type="email" name="email" class="input input-bordered w-full" required />
+                </div>
+                <div class="form-control mb-4">
+                    <label class="label"><span class="label-text">Password</span></label>
+                    <input type="password" name="password" class="input input-bordered w-full" required />
+                </div>
+                <div class="form-control mb-4">
+                    <label class="label"><span class="label-text">Role</span></label>
+                    <select name="role" class="select select-bordered w-full">
+                        <option value="user">User</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </div>
+                <div class="modal-action">
+                    <button type="submit" class="btn btn-primary">Create</button>
+                    <label for="create-user-modal" class="btn btn-ghost">Cancel</label>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal: Edit User -->
+    <input type="checkbox" id="edit-user-modal" class="modal-toggle" />
+    <div class="modal">
+        <div class="modal-box">
+            <h3 class="font-bold text-lg">Edit User</h3>
+            <form id="edit-user-form" action="" method="POST">
+                <div class="form-control mb-4">
+                    <label class="label"><span class="label-text">Name</span></label>
+                    <input type="text" name="name" id="edit-name" class="input input-bordered w-full" required />
+                </div>
+                <div class="form-control mb-4">
+                    <label class="label"><span class="label-text">Surname</span></label>
+                    <input type="text" name="surname" id="edit-surname" class="input input-bordered w-full" required />
+                </div>
+                <div class="form-control mb-4">
+                    <label class="label"><span class="label-text">Email</span></label>
+                    <input type="email" name="email" id="edit-email" class="input input-bordered w-full" required />
+                </div>
+                <div class="form-control mb-4">
+                    <label class="label"><span class="label-text">Role</span></label>
+                    <select name="role" id="edit-role" class="select select-bordered w-full">
+                        <option value="user">User</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </div>
+                <div class="modal-action">
+                    <button type="submit" class="btn btn-success">Save Changes</button>
+                    <label for="edit-user-modal" class="btn btn-ghost">Cancel</label>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast-container" class="fixed top-4 right-4 z-50">
+        <% if (error) { %>
+        <div class="alert alert-error shadow-lg">
+            <div>
+                <span><i class="ri-error-warning-line ri-lg"></i></span>
+                <span><%= error %></span>
+            </div>
+            <button class="btn btn-sm btn-ghost" onclick="dismissToast()">✕</button>
+        </div>
+        <% } %>
+    </div>
+
+    <%- include('partials/footer') %>
+
+    <script src="/js/admin.js"></script>
+</body>
+</html>

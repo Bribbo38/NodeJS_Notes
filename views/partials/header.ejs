@@ -1,0 +1,22 @@
+<header class="bg-base-100 shadow-md">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+        <a href="/" class="text-2xl font-bold text-primary">
+            NoteApp
+        </a>
+
+        <nav class="flex space-x-6">
+            <% if (user) { %>
+                <a href="/" class="text-base-content hover:text-primary"><i class="ri-home-4-line"></i> Home</a>
+                <% if (user.role === 'admin'){ %>
+                    <a href="/admin" class="text-base-content hover:text-primary"><i class="ri-admin-line"></i> Administration</a>
+                <% } else { %>
+                    <a href="/profile" class="text-base-content hover:text-primary"><i class="ri-user-line"></i> Profile</a>
+                <% } %>
+                <a href="/logout" class="text-base-content hover:text-primary"><i class="ri-logout-circle-line"></i> Logout</a>
+            <% } else { %>
+                <a href="/login" class="text-base-content hover:text-primary">Login</a>
+                <a href="/register" class="text-base-content hover:text-primary">Register</a>
+            <% } %>
+        </nav>
+    </div>
+</header>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('partials/head', { title: note ? 'Edit Note' : 'Create Note' }) %>
+
+    <body class="bg-base-300 flex flex-col min-h-screen">
+        <%- include('partials/header') %>
+
+            <main class="flex-grow flex items-center justify-center text-center min-h-screen">
+                <div class="container mx-auto px-4 py-10">
+                    <div class="bg-base-100 p-8 rounded-lg shadow-lg max-w-lg mx-auto">
+                        <h1 class="text-3xl font-bold text-primary mb-6">
+                            <%= note ? 'Edit Note' : 'Create New Note' %>
+                        </h1>
+
+                        <form action="<%= note ? `/notes/store/${note._id}?_method=PUT` : '/notes/create' %>" method="POST">
+                            <div class="form-control mb-4">
+                                <label class="label">
+                                    <span class="label-text">Title</span>
+                                </label>
+                                <input type="text" name="title" placeholder="Enter the note title"
+                                       class="input input-bordered w-full" value="<%= note ? note.title : '' %>"
+                                       required />
+                            </div>
+                        
+                            <div class="form-control mb-4">
+                                <label class="label">
+                                    <span class="label-text">Content</span>
+                                </label>
+                                <textarea name="content" placeholder="Enter your note content"
+                                          class="textarea textarea-bordered w-full h-32"
+                                          required><%= note ? note.content : '' %></textarea>
+                            </div>
+                        
+                            <!-- Task List Section -->
+                            <div id="task-list" class="form-control mb-4">
+                                <label class="label">
+                                    <span class="label-text">Tasks</span>
+                                </label>
+                                <% if (note && note.tasks && note.tasks.length > 0) { %>
+                                    <% note.tasks.forEach((task, index) => { %>
+                                        <div class="flex items-center space-x-2 mb-2">
+                                            <input type="checkbox" name="tasks[<%= index %>][completed]" value="true"
+                                                   <%= task.completed ? 'checked' : '' %> class="checkbox checkbox-sm" />
+                                            <input type="text" name="tasks[<%= index %>][description]"
+                                                   value="<%= task.description %>" class="input input-bordered flex-grow"
+                                                   required />
+                                            <button type="button" class="btn btn-error btn-xs remove-task">X</button>
+                                        </div>
+                                    <% }) %>
+                                <% } else { %>
+                                    <div class="flex items-center space-x-2 mb-2">
+                                        <input type="checkbox" name="tasks[0][completed]" value="true"
+                                               class="checkbox checkbox-sm" />
+                                        <input type="text" name="tasks[0][description]"
+                                               placeholder="Task description"
+                                               class="input input-bordered flex-grow" required />
+                                        <button type="button" class="btn btn-error btn-xs remove-task">X</button>
+                                    </div>
+                                <% } %>
+                            </div>
+                            <button id="add-task" type="button" class="btn btn-secondary btn-sm mt-2">
+                                + Add Task
+                            </button>
+                        
+                            <!-- Display Error Message if Any -->
+                            <% if (error) { %>
+                                <p class="text-red-500 text-center mb-4">
+                                    <%= error %>
+                                </p>
+                            <% } %>
+                        
+                            <div class="form-control mt-6">
+                                <button type="submit" class="btn btn-primary w-full">
+                                    <%= note ? 'Save Changes' : 'Create Note' %>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </main>
+
+            <%- include('partials/footer') %>
+
+    </body>
+    <script src="/js/task.js"></script>
+
+</html>

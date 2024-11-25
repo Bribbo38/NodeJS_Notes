@@ -1,0 +1,128 @@
+[{
+  "_id": {
+    "$oid": "67447aac89c2d07701e7e7e6"
+  },
+  "title": "Weekly Meeting Notes",
+  "content": "Discussion about project timelines and client feedback.",
+  "tasks": [
+    {
+      "description": "Prepare presentation slides",
+      "completed": true
+    },
+    {
+      "description": "Send summary email to team",
+      "completed": false
+    },
+    {
+      "description": "Follow up with the client",
+      "completed": false
+    }
+  ],
+  "user": {
+    "$oid": "647f1f77c2b4f2a643e1b2e0"
+  },
+  "completed": false,
+  "createdAt": {
+    "$date": "2024-11-20T10:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-22T10:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "67447aac89c2d07701e7e7e7"
+  },
+  "title": "Personal Goals for November",
+  "content": "Complete gym challenge and read two books.",
+  "tasks": [
+    {
+      "description": "Sign up for gym classes",
+      "completed": true
+    },
+    {
+      "description": "Buy new workout shoes",
+      "completed": false
+    },
+    {
+      "description": "Pick two books to read",
+      "completed": true
+    }
+  ],
+  "user": {
+    "$oid": "647f1f77c2b4f2a643e1b2e1"
+  },
+  "completed": false,
+  "createdAt": {
+    "$date": "2024-11-01T08:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-10T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "67447aac89c2d07701e7e7e8"
+  },
+  "title": "Grocery List",
+  "content": "Plan meals and buy ingredients for the week.",
+  "tasks": [
+    {
+      "description": "Buy vegetables",
+      "completed": true
+    },
+    {
+      "description": "Get milk and eggs",
+      "completed": true
+    },
+    {
+      "description": "Check for spices at home",
+      "completed": false
+    }
+  ],
+  "user": {
+    "$oid": "647f1f77c2b4f2a643e1b2e2"
+  },
+  "completed": false,
+  "createdAt": {
+    "$date": "2024-11-23T12:30:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-23T13:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "67447aac89c2d07701e7e7e9"
+  },
+  "title": "Office Party Planning",
+  "content": "Organize food, venue, and activities for the holiday party.",
+  "tasks": [
+    {
+      "description": "Book the venue",
+      "completed": true
+    },
+    {
+      "description": "Create a guest list",
+      "completed": true
+    },
+    {
+      "description": "Finalize the catering",
+      "completed": false
+    },
+    {
+      "description": "Decide on games or entertainment",
+      "completed": false
+    }
+  ],
+  "user": {
+    "$oid": "647f1f77c2b4f2a643e1b2e0"
+  },
+  "completed": false,
+  "createdAt": {
+    "$date": "2024-11-15T14:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-22T14:30:00.000Z"
+  }
+}]
