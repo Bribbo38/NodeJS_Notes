@@ -2585,14 +2585,6 @@ input.tab:checked + .tab-content,
   width: 1.25rem;
 }
 
-.modal-top {
-  place-items: start;
-}
-
-.modal-bottom {
-  place-items: end;
-}
-
 .tabs-md :where(.tab) {
   height: 2rem;
   font-size: 0.875rem;
@@ -2852,10 +2844,6 @@ input.tab:checked + .tab-content,
   display: grid;
 }
 
-.hidden {
-  display: none;
-}
-
 .h-32 {
   height: 8rem;
 }
@@ -2898,26 +2886,6 @@ input.tab:checked + .tab-content,
 
 .max-w-sm {
   max-width: 24rem;
-}
-
-.max-w-md {
-  max-width: 28rem;
-}
-
-.max-w-xs {
-  max-width: 20rem;
-}
-
-.max-w-\[\] {
-  max-width: ;
-}
-
-.max-w-\[99\%\] {
-  max-width: 99%;
-}
-
-.max-w-\[90\%\] {
-  max-width: 90%;
 }
 
 .flex-grow {
@@ -2994,10 +2962,6 @@ input.tab:checked + .tab-content,
 
 .overflow-x-auto {
   overflow-x: auto;
-}
-
-.overflow-x-hidden {
-  overflow-x: hidden;
 }
 
 .rounded-box {
@@ -3100,10 +3064,6 @@ input.tab:checked + .tab-content,
   text-align: center;
 }
 
-.text-right {
-  text-align: right;
-}
-
 .text-2xl {
   font-size: 1.5rem;
   line-height: 2rem;
@@ -3204,17 +3164,8 @@ input.tab:checked + .tab-content,
 }
 
 @media (min-width: 640px) {
-  .sm\:max-w-md {
-    max-width: 28rem;
-  }
-
   .sm\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .sm\:px-6 {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
   }
 }
 
@@ -3225,10 +3176,6 @@ input.tab:checked + .tab-content,
 }
 
 @media (min-width: 1024px) {
-  .lg\:max-w-lg {
-    max-width: 32rem;
-  }
-
   .lg\:grid-cols-4 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
